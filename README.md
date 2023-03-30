@@ -53,26 +53,24 @@ poetry install
 poetry lock 
 ```
 
-### Testing
+### Testing with Pytest
 `pytest -v`
 
-### Postgres Setup for Linux
-
-'''
-# Create the file repository configuration:
+## Postgres Setup for Linux
+### Create the file repository configuration:
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
-# Import the repository signing key:
+### Import the repository signing key:
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
-# Update the package lists:
+### Update the package lists:
 sudo apt-get update
 
-# Install the latest version of PostgreSQL.
-# If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
+### Install the latest version of PostgreSQL.
+If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
 sudo apt-get -y install postgresql
 
-# Not necessary, but better CLI than psql
+### Not necessary, but better CLI than psql
 sudo apt-get install pgcli
 '''
 
@@ -84,7 +82,7 @@ sudo service postgresql start
 sudo service postgresql restart
 '''
 
-Connect to DB
+### Connect to DB
 `pgcli -U dev -h localhost -d postgres`
 
 
