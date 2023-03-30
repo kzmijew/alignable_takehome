@@ -4,6 +4,6 @@ from loguru import logger
 
 def test_summary():
     runner = CliRunner()
-    result = runner.invoke(main.summary)
+    result = runner.invoke(main.run)
     assert result.exit_code == 0
     assert not result.exception

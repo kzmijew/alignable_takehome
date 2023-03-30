@@ -6,7 +6,9 @@ This repository is a python package with a CLI that uses Click, but also contain
 
 Additionally, the `sql` file contains `1_table_setup.sql` which sets up a schema and the data tables with appropriate typing and `ENUM` classes to ensure data integrity. The `2_events_wide.sql` file outputs a joined wide view of all of the data which allows for easy summarization which is done in `3_summary.sql`. The `.sh` script uploads the files to the appropriate tables after script #1 has been executed. This is a quick and dirty way to get data into a local postgres, but can also be accomplished using SQLAlchemy ORM.
 
-## Assumptions Made
+Finally, a basic CLI was set up using Click to provide an interface to verify the data and get an output summary. 
+
+### Assumptions Made
 * A session uuid in sessions_events has multiple rows (possible duplicates) that represent multiple of the same action in a single session (i.e. a user accepts multiple connections in a single session).
 * All clicked emails are also opened (you have to open an email to click any content...)
 
@@ -14,6 +16,21 @@ Additionally, the `sql` file contains `1_table_setup.sql` which sets up a schema
 There is a CLI interface using Click which can be accessed using Poetry or after installing the package with setuptools.
 
 `poetry run emailtools {command}`
+
+```
+  Alignable email stats CLI.
+
+Options:
+  --verbose  Print verbose help messages.
+  --help     Show this message and exit.
+
+Commands:
+  click_open_rates         Get click and open rates.
+  connection_requests      Get connections.
+  conversation_engagement  Get conversations.
+  run                      Answers questions in plain text in the logger.
+  summary                  Displays summary of email data.
+```
 
 ## Environment Setup
 This repo uses Poetry to handle packages and virtual environments.
@@ -39,7 +56,7 @@ poetry lock
 ### Testing
 `pytest -v`
 
-### Installing Postgres
+### Postgres Setup for Linux
 
 '''
 # Create the file repository configuration:

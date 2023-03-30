@@ -12,6 +12,18 @@ def cli(ctx, verbose):
     if verbose:
         click.echo('Starting in verbose mode.')
 
+@cli.command('run')
+def run():
+    '''
+    Answers questions in plain text in the logger.
+    '''
+    analyzer = EmailAnalyzer() 
+    q_and_a = analyzer.main()
+
+    for question in list(q_and_a.keys()):
+        click.echo(question)
+        for answer in q_and_a[question]:
+            click.echo('\t * ' + answer)
 
 @cli.command('summary')
 def summary():
@@ -19,19 +31,38 @@ def summary():
     Displays summary of email data.
     '''
     analyzer = EmailAnalyzer() 
-    summary = analyzer.quick_summary()
-
+    summary = analyzer.get_summary()
     click.echo(summary)
 
-@cli.command('testing')
-def testing():
+@cli.command('click_open_rates')
+def click_open_rates():
     '''
-    Test function.
+    Get click and open rates.
     '''
     analyzer = EmailAnalyzer() 
-    test = analyzer.get_total_emails_sent_by_id()
+    df_summary = analyzer.get_summary()
+    rates = analyzer.get_open_click_rates(df_summary)
+    click.echo(rates)
 
-    click.echo(test)
+@cli.command('conversation_engagement')
+def conversation_engagement():
+    '''
+    Get conversations.
+    '''
+    analyzer = EmailAnalyzer() 
+    df_summary = analyzer.get_summary()
+    convos = analyzer.get_conversation_engagement(df_summary)
+    click.echo(convos)
+
+@cli.command('connection_requests')
+def connection_requests():
+    '''
+    Get connections.
+    '''
+    analyzer = EmailAnalyzer() 
+    df_summary = analyzer.get_summary()
+    connections = analyzer.get_connection_requests_per_100(df_summary)
+    click.echo(connections)
 
 if __name__ == '__main__':
     cli(prog_name="cli")
