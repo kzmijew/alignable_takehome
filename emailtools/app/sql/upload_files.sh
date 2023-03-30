@@ -1,5 +1,0 @@
-psql -c "\copy alignable.mailings FROM '/mnt/c/Users/kirkz/projects/alignable/user_engagement/raw_data/mailings.csv' DELIMITER ',' CSV HEADER;"
-psql -c "\copy alignable.sent_emails FROM '/mnt/c/Users/kirkz/projects/alignable/user_engagement/raw_data/sent_emails.csv' DELIMITER ',' CSV HEADER;"
-psql -c "\copy alignable.sent_email_events FROM '/mnt/c/Users/kirkz/projects/alignable/user_engagement/raw_data/sent_email_events.csv' DELIMITER ',' CSV HEADER;"
-psql -c "\copy alignable.sessions FROM '/mnt/c/Users/kirkz/projects/alignable/user_engagement/raw_data/sessions_cleaned.csv' DELIMITER ',' CSV HEADER;"
-psql -c "\copy alignable.session_events FROM '/mnt/c/Users/kirkz/projects/alignable/user_engagement/raw_data/session_events_cleaned.csv' DELIMITER ',' CSV HEADER;"

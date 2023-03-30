@@ -1,29 +1,43 @@
 # Alignable Data Science Take-Home
+Kirk Zmijewski (2023)
 
+## Overview 
+This repository is a python package with a CLI that uses Click, but also contains two Jupyter notebooks which demonstrate some quick EDA and visualization of the data. A README in that folder has some summary information.
 
+Additionally, the `sql` file contains `1_table_setup.sql` which sets up a schema and the data tables with appropriate typing and `ENUM` classes to ensure data integrity. The `2_events_wide.sql` file outputs a joined wide view of all of the data which allows for easy summarization which is done in `3_summary.sql`. The `.sh` script uploads the files to the appropriate tables after script #1 has been executed. This is a quick and dirty way to get data into a local postgres, but can also be accomplished using SQLAlchemy ORM.
 
+## Assumptions Made
+* A session uuid in sessions_events has multiple rows (possible duplicates) that represent multiple of the same action in a single session (i.e. a user accepts multiple connections in a single session).
+* All clicked emails are also opened (you have to open an email to click any content...)
 
-## Setup
+## CLI
+There is a CLI interface using Click which can be accessed using Poetry or after installing the package with setuptools.
 
+`poetry run emailtools {command}`
+
+## Environment Setup
+This repo uses Poetry to handle packages and virtual environments.
 ### Pyenv
 
 Set up pyenv
 
 ```
-pyenv virtualenv 3.10.6 alignable
-pyenv local alignable
+pyenv virtualenv 3.10.6 emailtools
+pyenv local emailtools
 ```
-
-
 ### Poetry
 Installs all dependencies using [Poetry](https://python-poetry.org/docs/).
 
 ```
+poetry shell
 poetry install
+
+# if issues with lock file
+poetry lock 
 ```
 
-
-
+### Testing
+`pytest -v`
 
 ### Installing Postgres
 
@@ -54,7 +68,7 @@ sudo service postgresql restart
 '''
 
 Connect to DB
-`pgcli -U dev -h 127.0.0.1 -d postgres`
+`pgcli -U dev -h localhost -d postgres`
 
 
 
