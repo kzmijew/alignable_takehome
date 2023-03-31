@@ -32,6 +32,18 @@ Commands:
   summary                  Displays summary of email data.
 ```
 
+### CLI Output
+```
+1. What email has the highest unique open rate? Click rate? Click-to-open rate?
+         * Email 297161 had the highest unique open rate at 57.0%.
+         * Email 297161 had the highest click rate at 45.1%.
+         * Email 297161 had the highest click-to-open rate at 79.1%.
+2. What email drives the most conversation messages total?
+         * Email 297147 had the most conversation messages at 2191.0.
+3. What email drives the most connection requests sent per 100 emails sent?
+         * Email 297147 has the most connection requests per 100 emails at 17.15.
+```
+
 ## Environment Setup
 This repo uses Poetry to handle packages and virtual environments.
 ### Pyenv
